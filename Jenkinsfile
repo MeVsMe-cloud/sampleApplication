@@ -12,7 +12,7 @@ node{
    sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
    stage('Deployment in Dev Environment'){
-     def dockerRun = 'docker run -p 8080:8083 -d --name mySampleApp dockerjenkins444/mysecondrepo:1.0.0'
+     def dockerRun = 'docker run -p 8080:8080 -d --name mySampleApp dockerjenkins444/mysecondrepo:1.0.0'
      sshagent(['dev-server']) {
        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.58.121 ${dockerRun}"
    }
