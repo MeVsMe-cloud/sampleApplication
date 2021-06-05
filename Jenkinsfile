@@ -2,6 +2,11 @@ node{
   stage('SCM Checkout'){
    git credentialsId: 'gituhb-cred', url: 'https://github.com/MeVsMe-cloud/sampleApplication'
   }
+  stage('MVN packaging'){
+    def MAVEN_HOME = tool name: 'maven-3', type: 'maven'
+    def mvnCMD = "${MAVEN_HOME}/bin/mvn"
+    sh "${mvnCMD} clean package" 
+  }
   stage('Build Docker Image'){
    sh 'docker build -t dockerjenkins444/mysecondrepo:1.0.0 .'
   }
