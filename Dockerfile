@@ -1,3 +1,6 @@
-FROM tomcat:8
-COPY target/*.war /usr/local/tomcat/webapps/myweb.war
-# Added to test webhook
+FROM ubuntu
+RUN apt-get update && apt-get install -y tzdata
+RUN apt-get -y install apache2
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name deepakIntellipaat 	
