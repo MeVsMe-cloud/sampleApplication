@@ -23,3 +23,17 @@ spec:
           image: dockerjenkins444/mysecondrepo:1.0.0
           ports:
             - containerPort: 8080
+# service type load balancer
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: server-demo-svc
+spec:
+  selector:
+    app: web-svc
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
