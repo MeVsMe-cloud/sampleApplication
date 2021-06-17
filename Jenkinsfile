@@ -12,10 +12,8 @@ node{
    sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
    stage('Deployment in EKS Cluster'){
-        kubernetesDeploy(
-                 configs: 'sampleApplication/deployment.yaml',
-                 kubeconfigId: 'k8s',
-                 enableConfigSubstitution: true
-      )
+     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerHubPwd')]) {
+        kubectl apply -f sampleApplication/deployment.yaml
   }
  }
+}
