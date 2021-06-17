@@ -11,10 +11,13 @@ node{
   }
    sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
-   stage('Deployment in K8s'){
-     def eksDeployment = 'kubectl run mySampleApp --image=dockerjenkins444/mysecondrepo:1.0.0'
-     sshagent(['eks-cluster']) {
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.58.121 ${eksDeployment}"
-   }
+   stage('Deployment in EKS Cluster'){
+    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerHubPwd')]) {
+      kubernetesDeploy(
+        configs: 'sampleApplication/deployment.yaml',
+        kubeconfigId: 'k8s',
+        enableConfigSubstitution: true
+        )
+    }   
   }
-}
+ }
