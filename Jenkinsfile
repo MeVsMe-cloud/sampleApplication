@@ -16,7 +16,7 @@ node{
                  configs: 'sampleApplication/deployment.yaml',
                  enableConfigSubstitution: true,  
                        dockerCredentials: [
-                        [credentialsId: 'dockerhub-pwd'],
+                        [credentialsId: 'dockerhub-pwd', variable: 'dockerHubPwd'],
                  ]
       )
   }
