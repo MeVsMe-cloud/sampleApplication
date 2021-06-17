@@ -13,11 +13,7 @@ node{
   }
    stage('Deployment in EKS Cluster'){
      withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerHubPwd')]) {
-      kubernetesDeploy(kubeconfigId: 'k8s',
-                 configs: 'sampleApplication/deployment.yaml',
-                 enableConfigSubstitution: true
-      )
-  }
-      
+        kubectl apply -f sampleApplication/deployment.yaml
+     }
   }
  }
