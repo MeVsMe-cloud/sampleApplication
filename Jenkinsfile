@@ -12,6 +12,7 @@ node{
    sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
    stage('Deployment in EKS Cluster'){
+      git credentialsId: 'gituhb-cred', url: 'https://github.com/MeVsMe-cloud/sampleApplication'
      	   kubernetesDeploy(
                  configs: 'sampleApplication/deployment.yaml',
                  kubeconfigId: 'k8s',
