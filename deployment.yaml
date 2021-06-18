@@ -19,12 +19,12 @@ spec:
         app: web
     spec:
       containers:
-        - name: back-end
-          image: dockerjenkins444/mysecondrepo:1.0.0
-          ports:
-            - containerPort: 8080
-       imagePullSecrets:
-       - name: $KUBERNETES_SECRET_NAME      
+       - name: back-end
+         image: dockerjenkins444/mysecondrepo:1.0.0
+         ports:
+         - containerPort: 8080
+      imagePullSecrets:
+      - name: $KUBERNETES_SECRET_NAME      
 # service type load balancer
 ---
 apiVersion: apps/v1
