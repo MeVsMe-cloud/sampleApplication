@@ -12,10 +12,10 @@ node{
    sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
    stage('Deployment in EKS Cluster'){
-     	   kubernetesDeploy(
-                 configs: 'sampleApplication/deployment.yaml',
-                 kubeconfigId: 'k8s',
-                 enableConfigSubstitution: true
-      )
+         kubernetesDeploy configs: 'sampleApplication/deployment.yaml',
+           kubeConfig: [path: ''], kubeconfigId: 'k8s', secretName: '',
+           ssh: [sshCredentialsId: '*', sshServer: 'ec2-user@172.31.22.228'],
+           textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '',
+                             serverUrl: 'https://DBF1883A889B1C56F313FE09A48DF40C.yl4.us-east-1.eks.amazonaws.com']
   }
  }
