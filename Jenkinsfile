@@ -13,7 +13,7 @@ node{
   }
    stage('Deployment in EKS Cluster'){
      kubernetesDeploy configs: '*.yaml', dockerCredentials: [[credentialsId: 'docker-cred-for-k8s']], kubeConfig: [path: ''],
-       kubeconfigId: 'k8s', secretName: 'mysecret', ssh: [sshCredentialsId: '*', sshServer: 'ec2-user@172.31.22.228'],
+       kubeconfigId: 'k8s', secretName: '', ssh: [sshCredentialsId: '*', sshServer: 'ec2-user@172.31.22.228'],
        textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '',
                          serverUrl: 'https://DBF1883A889B1C56F313FE09A48DF40C.yl4.us-east-1.eks.amazonaws.com']
   }
