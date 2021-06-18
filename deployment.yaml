@@ -12,19 +12,19 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: web
+      app: web	  
   template:
     metadata:
       labels:
         app: web
     spec:
       containers:
-       - name: back-end
-         image: dockerjenkins444/mysecondrepo:1.0.0
-         ports:
-         - containerPort: 8080
+      - name: back-end
+        image: dockerjenkins444/mysecondrepo:1.0.0
+        ports:
+        - containerPort: 8080
       imagePullSecrets:
-      - name: $KUBERNETES_SECRET_NAME      
+      - name: $KUBERNETES_SECRET_NAME
 # service type load balancer
 ---
 apiVersion: apps/v1
