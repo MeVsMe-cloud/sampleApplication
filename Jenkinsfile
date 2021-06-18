@@ -13,7 +13,6 @@ node{
   }
    stage('Deployment in EKS Cluster'){
      	   kubernetesDeploy(
-           git credentialsId: 'gituhb-cred', url: 'https://github.com/MeVsMe-cloud/sampleApplication'
                  configs: 'sampleApplication/deployment.yaml',
                  kubeconfigId: 'k8s',
                  enableConfigSubstitution: true
