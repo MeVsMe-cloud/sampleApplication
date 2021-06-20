@@ -1,3 +1,4 @@
+//This is my jenkins file
 node{
   stage('SCM Checkout'){
    git credentialsId: 'gituhb-cred', url: 'https://github.com/MeVsMe-cloud/sampleApplication'
