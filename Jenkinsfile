@@ -3,13 +3,13 @@ node{
    git credentialsId: 'gituhb-cred', url: 'https://github.com/MeVsMe-cloud/sampleApplication'
   }
   stage('Build Docker Image'){
-   sh 'sudo docker build -t dockerjenkins444/mysecondrepo:1.0.0 .'
+   sh 'docker build -t dockerjenkins444/mysecondrepo:1.0.0 .'
   }
   stage('Push Docker Image'){
     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerHubPwd')]) {
-      sh "sudo docker login -u dockerjenkins444 -p ${dockerHubPwd}" 
+      sh "docker login -u dockerjenkins444 -p ${dockerHubPwd}" 
   }
-   sh 'sudo docker push dockerjenkins444/mysecondrepo:1.0.0'
+   sh 'docker push dockerjenkins444/mysecondrepo:1.0.0'
   }
    stage('Deployment in EKS Cluster'){
      kubernetesDeploy configs: '*.yaml', dockerCredentials: [[credentialsId: 'docker-cred-for-k8s']], kubeConfig: [path: ''],
